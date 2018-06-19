@@ -5,4 +5,7 @@ module.exports = (app) => {
   
   app.route('/mutant').
     post(mutant.createMutant);
+  
+  app.route('/stats').
+    get(mutant.getStats);
 }

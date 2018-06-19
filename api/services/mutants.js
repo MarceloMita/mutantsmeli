@@ -11,17 +11,14 @@ exports.isMutant = (dna) => {
         // Check horizontal right
         const r = line.substring(j, j + 4);
         counter += MUTANT_MARKERS.includes(r) ? 1 : 0;
-        console.log('r',i, j, ': ', r);
         
         // Check diagonal right/down
         if(i < dna.length - 3) {
-          console.log('i: ', i, 'dna.length: ', dna.length);
           let rd = '';
           for(let k = 0; k < 4; k++){
             rd += dna[i + k][j + k];
           }
           counter += MUTANT_MARKERS.includes(rd) ? 1 : 0;
-          console.log('rd',i, j, ': ', rd);
         }
         
         // Check diagonal right/up
@@ -31,7 +28,6 @@ exports.isMutant = (dna) => {
             ru += dna[i - k][j + k];
           }
           counter += MUTANT_MARKERS.includes(ru) ? 1 : 0;
-          console.log('ru', i, j, ': ', ru);
         }
       } 
       
@@ -42,7 +38,6 @@ exports.isMutant = (dna) => {
           d += dna[i + k][j];
         }
         counter += MUTANT_MARKERS.includes(d) ? 1 : 0;
-        console.log('d', i, j, ': ', d);
       }
       
       if(counter > 1) {

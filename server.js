@@ -17,4 +17,3 @@ routes(app); //register the route
 
 app.listen(port);
 
-console.log('Mutants RESTful API server started on: ' + port);

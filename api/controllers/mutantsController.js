@@ -14,7 +14,6 @@ exports.createMutant = (req, res) => {
     }
     if(mutant) {
       const status = mutant.isMutant ? 200 : 403;
-      console.log("mutant exists: ", mutant);
       res.status(status).send();
     } else {
       let newMutant = new Mutant(req.body);
@@ -24,10 +23,22 @@ exports.createMutant = (req, res) => {
         if(err) {
           res.send(err);
         }
-        console.log("mutant doesnt exists: ", createdMutant);
         const status = createdMutant.isMutant ? 200 : 403;
         res.status(status).send();
       });
     }
+  });
+}
+
+exports.getStats = (req, res) => {
+  Mutant.count({ isMutant: true }, (err, countMutants) => {  
+    Mutant.count({ isMutant: false }, (err, countHumans) => { 
+      const ratio = countHumans !== 0 ? countMutants / countHumans : 1;
+      res.json({
+        count_mutant_dna: countMutants,
+        count_human_dna: countHumans,
+        ratio: ratio
+      }).send();
+    });
   });
 }
