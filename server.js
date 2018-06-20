@@ -15,5 +15,11 @@ app.use(bodyParser.json());
 
 routes(app); //register the route
 
-app.listen(port);
+/* istanbul ignore if */
+if (!module.parent) {
+  const server = app.listen(port, function () {
+    console.log('Listening at http://localhost:%s', port);
+  });
+}
 
+module.exports = app;

@@ -18,6 +18,12 @@ npm install
 npm start
 ```
 
+### Testing application
+
+```
+npm test
+```
+
 ## Usage
 
 ### To create a dna entry
@@ -36,6 +42,7 @@ Cache-Control: no-cache
 Response:
 
 If it is a mutant: `HTTP-200 OK`
+
 Otherwise: `HTTP-403 Forbiden`
 
 ### To check stats
